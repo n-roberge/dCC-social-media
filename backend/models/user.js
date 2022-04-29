@@ -13,7 +13,12 @@ const userSchema = mongoose.Schema({
   },
   password: { type: String, required: true, minLength: 8, maxLength: 1024 },
   isAdmin: { type: Boolean, required: true },
-  friends: { type: String, rerquired: true}
+  friendsList: [{
+    user:{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'users',
+    }
+  }] 
 });
 
 userSchema.methods.generateAuthToken = function () {

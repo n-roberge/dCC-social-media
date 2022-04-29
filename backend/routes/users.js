@@ -91,4 +91,22 @@ router.delete("/:userId", [auth, admin], async (req, res) => {
   }
 });
 
+
+// EDIT user
+
+
+//TODO: GET FriendsList
+router.get("/:userId/friendslist", [auth, admin], async (req, res) => {
+  try {
+    const friendsList = await User.find({userId: req.params.userId});
+    if (!friendsList)
+      return res
+        .status(400)
+        .send(`User with id ${req.params.userId} does not exist!`);
+    return res.send(friendsList);
+  } catch (ex) {
+    return res.status(500).send(`Internal Server Error: ${ex}`);
+  }
+});
+
 module.exports = router;
