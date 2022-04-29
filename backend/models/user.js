@@ -15,8 +15,7 @@ const userSchema = mongoose.Schema({
   isAdmin: { type: Boolean, required: true },
   friendsList: [{
     user:{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'users',
+      friendSchema
     }
   }] 
 });
