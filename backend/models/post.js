@@ -10,7 +10,7 @@ const postSchema = new mongoose.Schema({
   dateAdded: { type: Date, default: Date.now() },
 });
 
-function validatepost(post) {
+function validatePost(post) {
   const schema = Joi.object({
     user: Joi.string().required(),
     body: Joi.string().required(),
@@ -24,6 +24,6 @@ const Post = mongoose.model("Post", postSchema);
 
 module.exports = {
   Post,
-  validatepost,
+  validatePost,
   postSchema,
 };
