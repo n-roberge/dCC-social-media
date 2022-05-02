@@ -15,7 +15,8 @@ const userSchema = mongoose.Schema({
   about: { type: String, required: true, minLength: 5, maxLength: 1024 },
   password: { type: String, required: true, minLength: 8, maxLength: 1024 },
   isAdmin: { type: Boolean, required: true },
-  friendsList: [friendSchema] 
+  friendsList: [friendSchema],
+  //profile picture
 });
 
 userSchema.methods.generateAuthToken = function () {
