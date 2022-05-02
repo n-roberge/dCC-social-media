@@ -3,18 +3,19 @@ const Joi = require("joi");
 const {userSchema} = require("./user");
 
 const postSchema = new mongoose.Schema({
-  user: [userSchema],
+  user: { type: String, required: true}, //userId here or [userSchema]?
   body: { type: String, required: true, minlength: 2 },
-  like: { type: Boolean, required: true },
-  dislike: { type: Boolean, required: true },
+  like: { type: Boolean, default: false },
+  dislike: { type: Boolean, default: false },
   dateAdded: { type: Date, default: Date.now() },
 });
 
 function validatepost(post) {
   const schema = Joi.object({
+    user: Joi.string().required(),
     body: Joi.string().required(),
-    like: Joi.boolean().required(),
-    dislike: Joi.boolean().required(),
+    like: Joi.boolean(),
+    dislike: Joi.boolean(),
   });
   return schema.validate(post);
 }
