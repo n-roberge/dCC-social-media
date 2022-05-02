@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
     }
   });
 
-//GET post by user
+//GET post by ID
 router.get("/:id", async (req, res) => {
     try {
         let post = await Post.findById(req.params.id);

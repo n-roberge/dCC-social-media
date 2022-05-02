@@ -39,7 +39,7 @@ const validateUser = (user) => {
     about: Joi.string().min(5).max(1024).required(),
     password: Joi.string().min(5).max(1024).required(),
     isAdmin: Joi.bool().required(),
-    friendsList: Joi.string().required()
+    // friendsList: Joi.string().required()
   });
   return schema.validate(user);
 };
