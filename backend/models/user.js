@@ -12,7 +12,7 @@ const userSchema = mongoose.Schema({
     minLength: 2,
     maxLength: 255,
   },
-  about: { type: String, required: true, minLength: 5, maxLength: 1024 },
+  about: { type: String, required: false, minLength: 5, maxLength: 1024 },
   password: { type: String, required: true, minLength: 8, maxLength: 1024 },
   isAdmin: { type: Boolean, required: true },
   friendsList: [friendSchema],
@@ -36,7 +36,7 @@ const validateUser = (user) => {
   const schema = Joi.object({
     name: Joi.string().min(5).max(50).required(),
     email: Joi.string().min(5).max(255).required().email(),
-    about: Joi.string().min(5).max(1024).required(),
+    about: Joi.string().min(5).max(1024),
     password: Joi.string().min(5).max(1024).required(),
     isAdmin: Joi.bool().required(),
     // friendsList: Joi.string().required()
