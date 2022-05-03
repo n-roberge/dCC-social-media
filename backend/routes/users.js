@@ -134,6 +134,32 @@ router.put("/:userId", [auth, admin], async (req, res) => {
     return res.status(500).send(`Internal Server Error: ${ex}`);
   }
 });
+// PUT Friend
+router.put("/:userId/newfriend", [auth, admin], async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId);
+    if (!user)
+      return res
+        .status(400)
+        .send(`User with id ${req.params.userId} does not exist!`);
+  } catch (ex) {
+    return res.status(500).send(`Internal Server Error: ${ex}`);
+  }
+
+  try {
+    let user = await User.findByIdAndUpdate(
+        req.params.id, //req.body.name
+        {
+          friendsList: [...req.body.friendsList],
+        },
+        {new:true}
+      );
+      return res.send(user);
+    
+    }catch(ex) {
+    return res.status(500).send(`Internal Server Error: ${ex}`);
+  }
+});
 
 //TODO: GET FriendsList
 router.get("/:userId/friendslist", [auth, admin], async (req, res) => {
