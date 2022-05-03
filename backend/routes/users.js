@@ -175,4 +175,21 @@ router.get("/:userId/friendslist", [auth, admin], async (req, res) => {
   }
 });
 
+// PUT Friend Request
+router.put("/:userId/requests", async (req, res) => {
+  try {
+    const friends = await User.updateOne(
+      { _id: req.body._id },
+      { $addToSet: { friendRequests: req.body.friendRequests } }
+    );
+    if (friends)
+      return res
+        .status(201)
+        .send(`Friend with ID of ${req.body.friendRequests} added`);
+    return res.status(400).send(`Error adding friend`);
+  } catch (error) {
+    return res.status(500).send(`Internal Server Error: ${error}`);
+  }
+});
+
 module.exports = router;
