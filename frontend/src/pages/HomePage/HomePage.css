@@ -4,7 +4,8 @@
     border-radius: 6px;
     padding: 20px;
     color: rgb(17, 17, 16);
-    border: solid
+    border: solid;
+    
 }
 
 .user-profile{
@@ -21,4 +22,31 @@
     margin-bottom: -5px;
     font-weight: 500;
     color:brown
+}
+
+ .right-panel {
+   width: 200px;
+   display: flex;
+   
+ 
+}  
+
+.HomePage{
+    width: 100%;
+    border: solid;
+    display: flex;
+    height: 100vh;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: flex-end;                                                                                                ;
+}
+.right-panel .friendsList {
+    width:100%;
+    background: #fff;
+    border-radius: 0px;
+    padding: 20px;
+    color: rgb(17, 17, 16);
+    border: solid;
+    
+    
 }
