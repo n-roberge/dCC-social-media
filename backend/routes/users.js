@@ -124,6 +124,7 @@ router.put("/:userId", [auth, admin], async (req, res) => {
           name: req.body.name,
           email: req.body.email,
           about: req.body.about,
+          friendsList: req.body.friendsList
         },
         {new:true}
       );

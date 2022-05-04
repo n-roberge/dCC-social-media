@@ -1,12 +1,8 @@
 const { User, validateLogin, validateUser } = require("../models/user");
-
 const auth = require("../middleware/auth");
 const admin = require("../middleware/admin");
-
 const express = require("express");
 const router = express.Router();
-
-
 
 // PUT Friend
 router.put("/:userId/newfriend", [auth, admin], async (req, res) => {
