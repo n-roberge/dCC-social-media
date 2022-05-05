@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
 
 const friendSchema = mongoose.Schema({
+   //refId: objectID, ref: "User"
    name :  { type: String, required: true, minLength: 5, maxLength: 50 },
    status: {
       type: Number,

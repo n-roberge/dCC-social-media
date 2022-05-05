@@ -108,23 +108,12 @@ router.get("/:userId", [auth, admin], async (req, res) => {
 // EDIT user
 router.put("/:userId", [auth, admin], async (req, res) => {
   try {
-    const user = await User.findById(req.params.userId);
-    if (!user)
-      return res
-        .status(400)
-        .send(`User with id ${req.params.userId} does not exist!`);
-  } catch (ex) {
-    return res.status(500).send(`Internal Server Error: ${ex}`);
-  }
-
-  try {
     let user = await User.findByIdAndUpdate(
-        req.params.userId, //req.body.name
+        req.params.userId,
         {
           name: req.body.name,
           email: req.body.email,
           about: req.body.about,
-          friendsList: req.body.friendsList
         },
         {new:true}
       );
@@ -135,4 +124,25 @@ router.put("/:userId", [auth, admin], async (req, res) => {
   }
 });
 
+//update friend
+// "/:userId/friendObjectId/changestatus"
+router.put("/:userId/friendsList", [auth, admin], async (req, res) => {
+  try {
+    let user = await User.findByIdAndUpdate(
+      req.params.userId,
+      { 
+        $push: {
+          friendsList: 
+            {friendObjectId: req.body.friendsList, friendStatus: req.body.friendStatus}
+        },
+      },
+      {new:true}
+    );
+    return res.send(user);
+    
+    }catch(ex) {
+    return res.status(500).send(`Internal Server Error: ${ex}`);
+  }
+  });
+//EDIT user friendslist
 module.exports = router;
