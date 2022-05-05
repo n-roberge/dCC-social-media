@@ -3,6 +3,8 @@ import { useContext } from "react";
 import AuthContext from "../../context/AuthContext";
 import Post from "../../components/Post/Post";
 import "./HomePage.css";
+import FriendsList from "../../components/FriendsList/FriendsList";
+import Feed from "../../components/Feed/Feed";
 
 const HomePage = () => {
   const { user } = useContext(AuthContext);
@@ -13,23 +15,14 @@ const HomePage = () => {
   return (
     <body>
       <div className="container">
-        <div className="user-profile">
-          <div className="user-profile img">{user.img}</div>
-          <div className="user-profile p">{user.name}</div>
-          <Post />
+        <div>
+          <Post/>
         </div>
       </div>
       <div className="HomePage">
+        <Feed img={user.img}/>
         <div className="right-panel">
-          <div className="friendsList">
-            <h4>Friends</h4>
-            <a className="friend" href="#">
-              <div className="dp">
-                <img src="" alt=""></img>
-              </div>
-              <p className="name">Google</p>
-            </a>
-          </div>
+          <FriendsList />
         </div>
       </div>
     </body>

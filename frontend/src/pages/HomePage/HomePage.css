@@ -34,7 +34,7 @@
 .HomePage{
     width: 100%;
     border: solid;
-    display: flex;
+    display: grid;
     height: 100vh;
     justify-content: flex-start;
     flex-direction: column;
