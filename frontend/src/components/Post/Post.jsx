@@ -23,17 +23,20 @@ const Post = (props) => {
 
   return (
     <div className="PostContainer">
-      <form onSubmit={handleSubmit}>
-        <input
-          placeholder="What's on your mind?"
-          name="post"
-          title="post"
-          type="text"
-          value={post}
-          onChange={(event) => setPost(event.target.value)}
-        ></input>
-      </form>
-      <p>{post}</p>
+      <div className="user-profile">
+        <div className="user-profile img">{user.img}</div>
+        <div className="user-profile p">{user.name}</div>
+        <form onSubmit={handleSubmit}>
+          <input
+            placeholder="What's on your mind?"
+            name="post"
+            title="post"
+            type="text"
+            value={post}
+            onChange={(event) => setPost(event.target.value)}
+          ></input>
+        </form>
+      </div>
     </div>
   );
 };

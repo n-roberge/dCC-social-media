@@ -4,8 +4,3 @@ height: 100%;
 border: solid;
 
 }
-.PostContainer:hover{
-color: white;
-cursor: pointer;
-transition: .2s;
-}
