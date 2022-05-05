@@ -11,13 +11,28 @@ const HomePage = () => {
   );
   console.log(user);
   return (
-    <div className="container">
-      <div className="user-profile">
-        <div className="user-profile img">{user.img}</div>
-        <div className="user-profile p">{user.name}</div>
-        <Post />
+    <body>
+      <div className="container">
+        <div className="user-profile">
+          <div className="user-profile img">{user.img}</div>
+          <div className="user-profile p">{user.name}</div>
+          <Post />
+        </div>
       </div>
-    </div>
+      <div className="HomePage">
+        <div className="right-panel">
+          <div className="friendsList">
+            <h4>Friends</h4>
+            <a className="friend" href="#">
+              <div className="dp">
+                <img src="" alt=""></img>
+              </div>
+              <p className="name">Google</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </body>
   );
 };
 
