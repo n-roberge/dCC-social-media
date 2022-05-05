@@ -2,41 +2,46 @@ const { User, validateLogin, validateUser } = require("../models/user");
 
 const auth = require("../middleware/auth");
 const admin = require("../middleware/admin");
+const fileUpload = require("../middleware/file-upload");
 
 const bcrypt = require("bcrypt");
 const express = require("express");
 const router = express.Router();
 
 //* POST register a new user
-router.post("/register", async (req, res) => {
-  try {
-    const { error } = validateUser(req.body);
-    if (error) return res.status(400).send(error.details[0].message);
+router.post("/register", 
+  fileUpload.single("image"),
+  async (req, res) => {
+    try {
+      const { error } = validateUser(req.body);
+      if (error) return res.status(400).send(error.details[0].message);
 
-    let user = await User.findOne({ email: req.body.email });
-    if (user)
-      return res.status(400).send(`Email ${req.body.email} already claimed!`);
+      let user = await User.findOne({ email: req.body.email });
+      if (user)
+        return res.status(400).send(`Email ${req.body.email} already claimed!`);
 
-    const salt = await bcrypt.genSalt(10);
-    user = new User({
-      name: req.body.name,
-      email: req.body.email,
-      password: await bcrypt.hash(req.body.password, salt),
-      isAdmin: req.body.isAdmin,
-    });
-
-    await user.save();
-    const token = user.generateAuthToken();
-    return res
-      .header("x-auth-token", token)
-      .header("access-control-expose-headers", "x-auth-token")
-      .send({
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        isAdmin: user.isAdmin,
+      const salt = await bcrypt.genSalt(10);
+      user = new User({
+        name: req.body.name,
+        email: req.body.email,
+        password: await bcrypt.hash(req.body.password, salt),
+        isAdmin: req.body.isAdmin,
+        image: req.file.path
       });
-  } catch (ex) {
+
+      await user.save();
+      const token = user.generateAuthToken();
+      return res
+        .header("x-auth-token", token)
+        .header("access-control-expose-headers", "x-auth-token")
+        .send({
+          _id: user._id,
+          name: user.name,
+          email: user.email,
+          isAdmin: user.isAdmin,
+          image: user.image
+        });
+    } catch (ex) {
     return res.status(500).send(`Internal Server Error: ${ex}`);
   }
 });
