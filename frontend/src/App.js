@@ -1,5 +1,6 @@
 // General Imports
 import { Routes, Route } from "react-router-dom";
+import { useState } from "react";
 import "./App.css";
 
 // Pages Imports
@@ -11,11 +12,14 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage";
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
+import ImageUpload from "./components/ImageUpload/ImageUpload";
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
 
 function App() {
+  const [file, setFile] = useState();
+  const [user, setUser] = useState();
   return (
     <div>
       <Navbar />
@@ -32,6 +36,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/profile" element={<ProfilePage />} />
       </Routes>
+      {!user || !user.image ? <ImageUpload file = {file} setFile={setFile}/> : <button><img src={`http://localhost:5000/${user.image}`}/></button>}
       <Footer />
     </div>
   );
