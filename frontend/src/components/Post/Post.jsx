@@ -3,6 +3,8 @@ import axios from "axios";
 import "./Post.css";
 import { useContext } from "react";
 import AuthContext from "../../context/AuthContext";
+import { Link } from "react-router-dom";
+
 const Post = (props) => {
   const [post, setPost] = useState("");
   const { user } = useContext(AuthContext);
@@ -24,8 +26,8 @@ const Post = (props) => {
   return (
     <div className="PostContainer">
       <div className="user-profile">
-        <div className="user-profile img">{user.img}</div>
-        <div className="user-profile p">{user.name}</div>
+        <Link to="/aboutme" className="user-profile img" href="/aboutme">{user.img}</Link>
+        <div  className="user-profile p">{user.name}</div>
         <form onSubmit={handleSubmit}>
           <input
             placeholder="What's on your mind?"

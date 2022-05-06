@@ -32,9 +32,17 @@ function App() {
             </PrivateRoute>
           }
         />
+           <Route
+          path="/AboutMe"
+          element={
+            <PrivateRoute>
+              <ProfilePage />
+            </PrivateRoute>
+          }
+        />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
+        
       </Routes>
       {!user || !user.image ? <ImageUpload file = {file} setFile={setFile}/> : <button><img src={`http://localhost:5000/${user.image}`}/></button>}
       <Footer />

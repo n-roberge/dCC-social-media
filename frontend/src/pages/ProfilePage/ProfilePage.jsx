@@ -1,10 +1,36 @@
 import "./ProfilePage.css"
+
+import { useContext } from "react";
+import AuthContext from "../../context/AuthContext";
+
 const ProfilePage = (props) => {
+  const { user } = useContext(AuthContext);
   return (
-    <div className="ProfilePage">
-      <div className="ProfileContainer"><div className="ProfilePicture">Picture</div></div>
+    <div>
+    <div className="Name">{user.name}</div>
+    <div className="Bio"></div>
+    <div className="Email"></div>
+    <div></div>
     </div>
   );
 };
 
 export default ProfilePage;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
