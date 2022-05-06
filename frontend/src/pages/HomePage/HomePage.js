@@ -4,7 +4,8 @@ import AuthContext from "../../context/AuthContext";
 import Post from "../../components/Post/Post";
 import "./HomePage.css";
 import FriendsList from "../../components/FriendsList/FriendsList";
-import Feed from "../../components/Feed/Feed";
+import FeedList from "../../components/FeedList/FeedList";
+
 
 const HomePage = () => {
   const { user } = useContext(AuthContext);
@@ -13,19 +14,19 @@ const HomePage = () => {
   );
   console.log(user);
   return (
-    <body>
+    <div>
       <div className="container">
         <div>
           <Post/>
         </div>
       </div>
       <div className="HomePage">
-        <Feed img={user.img}/>
+        <FeedList img={user.img}/>
         <div className="right-panel">
           <FriendsList />
         </div>
       </div>
-    </body>
+      </div>
   );
 };
 
