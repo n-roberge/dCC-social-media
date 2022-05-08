@@ -112,21 +112,27 @@ router.get("/:userId", [auth, admin], async (req, res) => {
 
 // EDIT user
 router.put("/:userId", [auth, admin], async (req, res) => {
-  try {
-    let user = await User.findByIdAndUpdate(
-        req.params.userId,
-        {
-          name: req.body.name,
-          email: req.body.email,
-          about: req.body.about,
-        },
-        {new:true}
-      );
-      return res.send(user);
-    
-    }catch(ex) {
-    return res.status(500).send(`Internal Server Error: ${ex}`);
+  if (req.body.user === req.params.userId || req.user.isAdmin){
+    try {
+      let user = await User.findByIdAndUpdate(
+          req.params.userId,
+          {
+            name: req.body.name,
+            email: req.body.email,
+            about: req.body.about,
+          },
+          {new:true}
+        );
+        return res.send(user);
+      
+      }catch(ex) {
+      return res.status(500).send(`Internal Server Error: ${ex}`);
+    }
+  } else {
+    return res.status(403).send(`You can only update your account`)
   }
+  
+  
 });
 
 //update friend
@@ -149,5 +155,17 @@ router.put("/:userId/friendsList", [auth, admin], async (req, res) => {
     return res.status(500).send(`Internal Server Error: ${ex}`);
   }
   });
+
+  //get friendslist
+  router.get("/:userId/friendsList", [auth, admin], async (req, res) => {
+    try {
+      let user = await User.findById(req.params.userId);
+
+      return res.send(user);
+      
+      }catch(ex) {
+      return res.status(500).send(`Internal Server Error: ${ex}`);
+    }
+    });
 //EDIT user friendslist
 module.exports = router;

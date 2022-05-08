@@ -1,5 +1,6 @@
 const {Post, validatePost} = require("../models/post");
 const express = require("express");
+const { User } = require("../models/user");
 const router = express.Router();
 
 //GET all posts
@@ -74,4 +75,18 @@ router.post("/", async (req, res) => {
     }
 });
 
+//GET all posts of only friends
+router.get("/timeline/all", async (req, res)=> {
+    try {
+        const currentUser = await User.findById(req.body.userId)
+        const userPosts = await Post.find({ userId: currentUser._id})
+        const friendPosts = await Promise.all(
+            currentUser.friendsList.map((friendObjectId) => {
+                return Post.find({userId: friendObjectId});
+            })
+        )
+    } catch(ex) {
+        return res.status(500).send(`Internal Server Error: ${error}`);
+    }
+})
 module.exports = router;
