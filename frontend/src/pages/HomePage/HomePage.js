@@ -6,27 +6,26 @@ import "./HomePage.css";
 import FriendsList from "../../components/FriendsList/FriendsList";
 import FeedList from "../../components/FeedList/FeedList";
 
-
 const HomePage = () => {
   const { user } = useContext(AuthContext);
   user.img = (
-    <img src="https://scontent-hou1-1.xx.fbcdn.net/v/t39.30808-6/217403472_514756609773293_6442582320795800929_n.jpg?_nc_cat=100&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=fFBP5PTZE_8AX9T7Q3H&_nc_ht=scontent-hou1-1.xx&oh=00_AT9gk8HM3OPZMOClZCwtHOTui1D23RbrhsIBQIOHPbHt_A&oe=6275DF09" />
+    <img src="https://scontent-hou1-1.xx.fbcdn.net/v/t39.30808-6/217403472_514756609773293_6442582320795800929_n.jpg?_nc_cat=100&ccb=1-6&_nc_sid=09cbfe&_nc_ohc=je6jWQKsPdkAX8oYyaE&tn=i9352Bb2i64bW_UF&_nc_ht=scontent-hou1-1.xx&oh=00_AT_fOoZ7hzA0UvrIagCLjTNYL1zaDCfOmgVBV92FJUy5oA&oe=627BCDC9" />
   );
   console.log(user);
   return (
-    <div>
-      <div className="container">
-        <div>
-          <Post/>
-        </div>
+    <div className="HomePage">
+      <div className="CreatePost">
+        <Post />
       </div>
-      <div className="HomePage">
-        <FeedList img={user.img}/>
+      <div className="HomePageContent">
+        <div className="FeedList">
+          <FeedList img={user.img} />
+        </div>
         <div className="right-panel">
           <FriendsList />
         </div>
       </div>
-      </div>
+    </div>
   );
 };
 
