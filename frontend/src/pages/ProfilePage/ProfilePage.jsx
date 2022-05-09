@@ -1,32 +1,28 @@
 import "./ProfilePage.css";
 import axios from "axios";
-
 import { useContext, useState } from "react";
 import AuthContext from "../../context/AuthContext";
 
 const ProfilePage = (props) => {
   const { user } = useContext(AuthContext);
-
   const [edit, setEdit] = useState(false);
   const [name, setName] = useState(user.name);
   const [bio, setBio] = useState("");
   const [email, setEmail] = useState("");
   const baseURL = "http://localhost:3011/api/users/";
-  const headers = {
-    Authorization: 'Bearer ' + localStorage.getItem("token"),
-  };
+
   function switchEdit() {
     setEdit(!edit);
-    console.log(headers);
   }
 
   function handleSubmit(event) {
     event.preventDefault();
+    const jwt = localStorage.getItem("token");
     const payLoad = {
       user: user._id,
       aboutme: bio,
     };
-    axios.put(baseURL + user._id, headers, payLoad).then((response) => {
+    axios.put(baseURL + user._id, payLoad, { headers: { Authorization: "Bearer " + jwt }}).then((response) => {
       console.log(response.data);
     });
     switchEdit();
