@@ -9,9 +9,8 @@ import FeedList from "../../components/FeedList/FeedList";
 const HomePage = () => {
   const { user } = useContext(AuthContext);
   user.img = (
-    <img src="https://scontent-hou1-1.xx.fbcdn.net/v/t39.30808-6/217403472_514756609773293_6442582320795800929_n.jpg?_nc_cat=100&ccb=1-6&_nc_sid=09cbfe&_nc_ohc=je6jWQKsPdkAX8oYyaE&tn=i9352Bb2i64bW_UF&_nc_ht=scontent-hou1-1.xx&oh=00_AT_fOoZ7hzA0UvrIagCLjTNYL1zaDCfOmgVBV92FJUy5oA&oe=627BCDC9" />
+    <img src="https://pbs.twimg.com/profile_images/1455185376876826625/s1AjSxph_400x400.jpg" />
   );
-  console.log(user);
   return (
     <div className="HomePage">
       <div className="CreatePost">

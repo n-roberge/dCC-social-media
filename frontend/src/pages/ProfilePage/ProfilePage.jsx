@@ -34,7 +34,7 @@ const ProfilePage = (props) => {
     };
     axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
+        console.log(response.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -45,6 +45,7 @@ const ProfilePage = (props) => {
 
   if (edit) {
     return (
+      <div className="aboutSection">
       <form onSubmit={handleSubmit}>
         <input
           placeholder={user.name}
@@ -73,10 +74,11 @@ const ProfilePage = (props) => {
         <input className="button" type="submit" value="Submit" />
         <button onClick={switchEdit}>Cancel</button>
       </form>
+      </div>
     );
   } else {
     return (
-      <div>
+      <div className="aboutSection">
         <div className="Name">Name: {user.name}</div>
         <div className="About">Bio: {user.about}</div>
         <div className="Email">Email: {user.email}</div>
