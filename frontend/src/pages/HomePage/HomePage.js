@@ -2,7 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import AuthContext from "../../context/AuthContext";
 import Post from "../../components/Post/Post";
-import "./HomePage.css";
+import "./HomePage.scss";
 import FriendsList from "../../components/FriendsList/FriendsList";
 import FeedList from "../../components/FeedList/FeedList";
 
