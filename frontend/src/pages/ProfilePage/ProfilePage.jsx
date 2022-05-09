@@ -7,9 +7,9 @@ const ProfilePage = (props) => {
   const { user } = useContext(AuthContext);
   const [edit, setEdit] = useState(false);
   const [name, setName] = useState(user.name);
-  const [bio, setBio] = useState("");
+  const [about, setAbout] = useState("");
   const [email, setEmail] = useState("");
-  const baseURL = "http://localhost:3011/api/users/";
+  
 
   function switchEdit() {
     setEdit(!edit);
@@ -18,19 +18,19 @@ const ProfilePage = (props) => {
   async function handleSubmit(event) {
     event.preventDefault();
     const jwt = localStorage.getItem("token");
-    const payLoad = {
+    const data = {
       name: name,
       email: email,
-      about: bio,
+      about: about,
     };
     const config = {
       method: "put",
-      url: baseURL + user._id,
+      url: "http://localhost:3011/api/users/" + user._id,
       headers: {
-        "x-auth-token": jwt,
+        "x-auth-token": jwt.replace(/(^"|"$)/g, ''),
         "Content-Type": "application/json",
       },
-      data: payLoad,
+      data: data,
     };
     axios(config)
       .then(function (response) {
@@ -56,11 +56,11 @@ const ProfilePage = (props) => {
         />
         <input
           placeholder={user.about}
-          name="bio"
-          title="bio"
+          name="about"
+          title="about"
           type="text"
-          value={bio}
-          onChange={(event) => setBio(event.target.value)}
+          value={about}
+          onChange={(event) => setAbout(event.target.value)}
         />
         <input
           placeholder={user.email}
