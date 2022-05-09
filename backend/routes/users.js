@@ -8,6 +8,8 @@ const bcrypt = require("bcrypt");
 const express = require("express");
 const router = express.Router();
 
+// const path = require("path")
+
 //* POST register a new user
 router.post("/register", 
   fileUpload.single("image"),
@@ -26,7 +28,7 @@ router.post("/register",
         email: req.body.email,
         password: await bcrypt.hash(req.body.password, salt),
         isAdmin: req.body.isAdmin,
-        image: req.file.path
+        // image: req.file.path
       });
 
       await user.save();

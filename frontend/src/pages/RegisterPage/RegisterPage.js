@@ -13,7 +13,7 @@ const RegisterPage = () => {
   return (
     <div className="container">
       <form className="form" onSubmit={handleSubmit}>
-      <label>
+      {/* <label>
           Image:{" "}
           <input
             type="file"
@@ -21,7 +21,7 @@ const RegisterPage = () => {
             value={formData.image}
             onChange={handleInputChange}
           />
-        </label>
+        </label> */}
         <label>
           Name:{" "}
           <input
