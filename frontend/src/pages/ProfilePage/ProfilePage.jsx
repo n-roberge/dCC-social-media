@@ -15,16 +15,31 @@ const ProfilePage = (props) => {
     setEdit(!edit);
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     const jwt = localStorage.getItem("token");
     const payLoad = {
-      user: user._id,
-      aboutme: bio,
+      name: name,
+      email: email,
+      about: bio,
     };
-    axios.put(baseURL + user._id, payLoad, { headers: { Authorization: "Bearer " + jwt }}).then((response) => {
-      console.log(response.data);
-    });
+    const config = {
+      method: "put",
+      url: baseURL + user._id,
+      headers: {
+        "x-auth-token": jwt,
+        "Content-Type": "application/json",
+      },
+      data: payLoad,
+    };
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+        console.log(config);
+      });
     switchEdit();
   }
 
