@@ -26,7 +26,8 @@ userSchema.methods.generateAuthToken = function () {
       email: this.email,
       isAdmin: this.isAdmin,
       friendsList: this.friendsList,
-      image: this.image
+      image: this.image,
+      about: this.about
     },
     process.env.JWT_SECRET
   );
@@ -39,7 +40,8 @@ const validateUser = (user) => {
     about: Joi.string().min(5).max(1024),
     password: Joi.string().min(5).max(1024).required(),
     isAdmin: Joi.bool().required(),
-    image: Joi.string()
+    image: Joi.string(),
+    about: Joi.string()
   });
   return schema.validate(user);
 };

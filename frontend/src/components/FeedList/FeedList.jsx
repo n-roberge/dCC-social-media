@@ -21,13 +21,13 @@ const FeedList = (props) => {
 
   return (
     <div className="FeedList">
-      {Feeds.map((Feed) => {
+      {Feeds.map((feed) => {
        return  (<div>
           <div id="Feed">
-            <h4 className="username">{user.name}</h4>
+            <h4 className="username">{feed.user}</h4>
             <div className="user_IMG"></div>
-            <p className="Post">{Feed.body}</p>
-            <div className="Date">05/04/2022</div>
+            <p className="Post">{feed.body}</p>
+            <div className="Date">{feed.dateAdded}</div>
             <div className="user-profile img">{img}</div>
             <div></div>
           </div>
