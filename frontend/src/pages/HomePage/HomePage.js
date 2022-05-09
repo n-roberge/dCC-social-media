@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useContext } from "react";
 import AuthContext from "../../context/AuthContext";
 import Post from "../../components/Post/Post";
@@ -8,6 +8,8 @@ import FeedList from "../../components/FeedList/FeedList";
 
 const HomePage = () => {
   const { user } = useContext(AuthContext);
+  const [friends, setFriends] = useState(user.friendsList);
+
   user.img = (
     <img src="https://pbs.twimg.com/profile_images/1455185376876826625/s1AjSxph_400x400.jpg" />
   );
@@ -17,11 +19,11 @@ const HomePage = () => {
         <Post />
       </div>
       <div className="HomePageContent">
-        <div className="FeedList">
+        {/* <div className="FeedList">
           <FeedList img={user.img} />
-        </div>
+        </div> */}
         <div className="right-panel">
-          <FriendsList />
+          <FriendsList friends={friends}/>
         </div>
       </div>
     </div>
